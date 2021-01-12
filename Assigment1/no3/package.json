@@ -1,0 +1,22 @@
+{
+  "name": "no3",
+  "version": "1.0.0",
+  "description": "Run server on 5000 port",
+  "main": "index.js",
+  "scripts": {
+    "start":"node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "run",
+    "server",
+    "on",
+    "5000",
+    "port"
+  ],
+  "author": "Mohan Lar",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
