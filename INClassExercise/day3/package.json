@@ -1,0 +1,16 @@
+{
+  "name": "mongo_connect_db",
+  "version": "1.0.0",
+  "description": "we are going to connect mogno db ",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mohan lar",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^3.6.3"
+  }
+}
