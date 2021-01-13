@@ -1,0 +1,24 @@
+{
+  "name": "mean_game",
+  "version": "1.0.0",
+  "description": "this is my frist npm package ",
+  "main": "app11.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app12.js",
+    "watch": "npm watch"
+  },
+  "keywords": [
+    "009",
+    "npm",
+    "my",
+    "first",
+    "project"
+  ],
+  "author": "Mohan Lar",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {}
+}
