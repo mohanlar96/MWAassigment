@@ -16,7 +16,7 @@ const server=app.listen(app.get("port"),function(){
 
 });
 
-app.use("/",routes);
+app.use("/api",routes);
 
 
 
