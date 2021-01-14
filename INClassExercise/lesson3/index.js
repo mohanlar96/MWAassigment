@@ -1,5 +1,7 @@
-const db= require("./api/data/db.js");
 const express=require("express");
+
+const db= require("./api/data/db.js");
+
 const routes= require("./api/route");
 
 const app=express();

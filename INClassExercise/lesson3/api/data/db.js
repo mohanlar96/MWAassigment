@@ -37,6 +37,5 @@ process.once("SIGUSR2",function(){
     });
 });
 
-module.exports=mongoose;
 
 
