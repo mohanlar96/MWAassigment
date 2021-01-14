@@ -1,17 +1,16 @@
 const ObjectId = require("mongodb").ObjectId;
 
-const game=require("mongoose").model("Game");
+const Game=require("mongoose").model("Game");
 
 
-getGames=function(req,response){
+getGames=function(req,res){
     
     var offset= 0;
     var count= 5;
     var maxCount= 10;
-    var res= {
-        status: "",
-        message: ""
-    };
+
+    _feedbackResponse=(status,msg)=>res.status(status).send({message:msg});
+    
     
     if (req.query && req.query.offset) {
          offset= parseInt(req.query.offset);
@@ -22,36 +21,54 @@ getGames=function(req,response){
     }
 
     if (isNaN(offset) || isNaN(count)) {
-        res.status=400;
-        res.message="QueryString Offset and Count should be numbers";
+        _feedbackResponse(400,"QueryString Offset and Count should be numbers");
+        return;
+    }   
+
+    if (count > maxCount) {
+        _feedbackResponse(400,"Cannot exceed count of "+ maxCount);     
         return;
     }
 
-    if (count > maxCount) {
-        res.status=400;
-        res.message="Cannot exceed count of "+ maxCount;       
-        return;
-    }       
-    
-
-    game.find().skip(offset).limit(count).exec(function(err,docs){
+    Game.find().skip(offset).limit(count).exec(function(err,games){
         if (err) {
-            res.status=500;
-            res.message=err;
+            _feedbackResponse(500,err);            
             console.log("Error finding games");           
+         }else if(!games){
+            _feedbackResponse(404,"Games not found!");            
         } else {
             console.log("Found games", games.length);
-            res.status=200;
-            response.status(res.status).send(docs);
+            res.status(200).send(games);
         }
     });    
 }
 
-getAGame=function(req,res){   
-       game.findById(req.params.gameId).exec(function(err,docs){
-       res.status(200).json(docs);
-   });
+getAGame=function(req,res){ 
+
+    _feedbackResponse=(status,msg)=>res.status(status).send({message:msg});
+
+    
+     
+    Game.findById(req.params.gameId).exec(function(err,game){
+        if (err) {
+            _feedbackResponse(500,err);            
+            console.log("Error finding a game");           
+        }else if(!game){
+            _feedbackResponse(404,"Games not found!"); 
+            console.log("Game not found ");         
+        } else {
+            console.log("Found a game", game.length);
+            res.status(200).send(game);
+        }
+    });
    
+}
+
+
+
+module.exports={
+    getGames,
+    getAGame
 }
 
 
