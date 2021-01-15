@@ -4,9 +4,13 @@ const db= require("./api/data/db.js");
 
 const routes= require("./api/route");
 
+const bodyParser=require("body-parser");
+
 const app=express();
 
-app.set("port",5000);
+app.set("port",3000);
+
+app.use(bodyParser.urlencoded({entended:false}))
 
 const server=app.listen(app.get("port"),function(){
    

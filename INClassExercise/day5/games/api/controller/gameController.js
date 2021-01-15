@@ -58,7 +58,8 @@ getGames=function(req,res){
     }   
 
     if (count > maxCount) {
-        _feedbackResponse(400,"Cannot exceed count of "+ maxCount);     
+        _feedbackResponse(400,"Cannot exceed count of "+ maxCount); 
+        console.log("running");    
         return;
     }
 
@@ -95,103 +96,105 @@ getAGame=function(req,res){
     });
    
 }
-addGame=function(req,res){
+// addGame=function(req,res){
 
-    __res=(status,msg)=>res.status(status).send({message:msg});
+//     __res=(status,msg)=>res.status(status).send({message:msg});
 
 
 
-    if(req.body && req.body.title && req.body.price){
-        newGame=req.body;
-        Game.create({
-            title:req.body.title,
-            year:req.body.year,
-            rate:req.body.rate,
-            price:req.body.price,
-            minPlayers:req.body.minPlayers,
-            maxPlayers:req.body.maxPlayers,
-            publisher:"",
-            reviews:"" ,
-            minAge:req.body.minAge,
-            designers:req.body.designers           
+//     if(req.body && req.body.title && req.body.price){
+//         newGame=req.body;
+//         Game.create({
+//             title:req.body.title,
+//             year:req.body.year,
+//             rate:req.body.rate,
+//             price:req.body.price,
+//             minPlayers:req.body.minPlayers,
+//             maxPlayers:req.body.maxPlayers,
+//             publisher:"",
+//             reviews:"" ,
+//             minAge:req.body.minAge,
+//             designers:req.body.designers           
 
-        },function(error,game){
-            if(err){
-                _res(201,err)
+//         },function(error,game){
+//             if(err){
+//                 _res(201,err)
 
-            }else{
-                res.status(200,game);
-                console.log("successfully addeded a game ", game);
+//             }else{
+//                 res.status(200,game);
+//                 console.log("successfully addeded a game ", game);
 
-            }
-        });
-    }
-}
+//             }
+//         });
+//     }
+// }
 
-updateGame=function(req,res){
+// updateGame=function(req,res){
     
-    __res=(status,msg)=>res.status(status).send({message:msg});
+//     __res=(status,msg)=>{res.status(status).send({message:msg});
     
-    Game.findById(req.params.gameId).select("-reviews -publisher").exec(function(err,game){
+//     Game.findById(req.params.gameId).select("-reviews -publisher").exec(function(err,game){
 
-        if(err){
-            __res(500,err);
-        }
-
-        if(!game){
-            __res(400,"Game id not found");
-        }
-
-        game.title=req.body.title;
-        game.year=parseInt(req.body.year);
-        game.price=req.body.price;
-        game.rate=parseInt(req.body.rate);
-        game.minPlayers=req.body.minPlayers;
-        game.maxPlayers=req.body.maxPlayers;
-        game.minAge=parseInt(req.body.minAge);
-        game.designers=req.body.designers;  
-
-        game.save(function(err,updateGame){
+//         if(err){
+//             __res(500,err);
+//             console.log("running.....")
            
-            if(err){
-                __res(500,err);
-            }
-            res.status(204).json(updateGame);
-        });        
+//         }
 
-    });
-}
+//         if(!game){
+//             __res(400,"Game id not found");
+//         }
+
+//         game.title=req.body.title;
+//         game.year=parseInt(req.body.year);
+//         game.price=req.body.price;
+//         game.rate=parseInt(req.body.rate);
+//         game.minPlayers=req.body.minPlayers;
+//         game.maxPlayers=req.body.maxPlayers;
+//         game.minAge=parseInt(req.body.minAge);
+//         game.designers=req.body.designers;  
+
+//         game.save(function(err,updateGame){
+           
+//             if(err){
+//                 __res(500,err);
+//             }
+//             res.status(204).json(updateGame);
+//         });        
+
+//     });
+// }
 
 
 
 
-deleteAGame==function(req,res){
+// deleteAGame==function(req,res){
     
-    __res=(status,msg)=>res.status(status).send({message:msg});
+//     __res=(status,msg)=>res.status(status).send({message:msg});
     
-    Game.findByIdAndRemove(req.params.gameId).exec(function(err,deleteGame){
+//     Game.findByIdAndRemove(req.params.gameId).exec(function(err,deleteGame){
 
-        if(err){
-            __res(500,err);
-        }
+//         if(err){
+//             __res(500,err);
+//         }
 
-        if(!game){
-            __res(400,"Game id not found");
-        }
+//         if(!game){
+//             __res(400,"Game id not found");
+//         }
        
-    res.status(204).json(deleteGame);
+//     res.status(204).json(deleteGame);
          
 
-    });
+//     });
 
-}
+// }
 
 module.exports={
     getGames,
-    getAGame,
-    addGame,
-    updateGame,
-    deleteAGame
+    getAGame
+    // addGame,
+    // updateGame,
+    // deleteAGame
 }
 
 
