@@ -4,17 +4,12 @@ const Game=require("mongoose").model("Game");
 
 module.exports.getGames=function(req,res){
 
-    if(req.query && req.query.lat && req.query.lng){
-        runGeoQuery(req,res);
-        return;
-    }  
-    
+       
     var offset= 0;
     var count= 5;
     var maxCount= 10;
 
     _feedbackResponse=(status,msg)=>res.status(status).send({message:msg});
-    
     
     if (req.query && req.query.offset) {
          offset= parseInt(req.query.offset);
@@ -51,8 +46,6 @@ module.exports.getGames=function(req,res){
 module.exports.getAGame=function(req,res){ 
 
     _feedbackResponse=(status,msg)=>res.status(status).send({message:msg});
-
-    
      
     Game.findById(req.params.gameId).exec(function(err,game){
         if (err) {
@@ -68,11 +61,10 @@ module.exports.getAGame=function(req,res){
     });
    
 }
+
 module.exports.addAGame=function(req,res){
 
     __res=(status,msg)=>res.status(status).send({message:msg});
-
-
 
     if(req.body && req.body.title && req.body.price){
         newGame=req.body;
@@ -88,9 +80,9 @@ module.exports.addAGame=function(req,res){
             minAge:req.body.minAge,
             designers:req.body.designers           
 
-        },function(error,game){
+        },function(err,game){
             if(err){
-                _res(201,err)
+                __res(201,err)
                 return;
 
             }else{
@@ -139,10 +131,9 @@ module.exports.updateAGame=function(req,res){
     });
 }
 
-
-
-
 module.exports.deleteAGame=function(req,res){
+
+    console.log("running delete game");
     
     __res=(status,msg)=>res.status(status).send({message:msg});
     
@@ -153,7 +144,7 @@ module.exports.deleteAGame=function(req,res){
             return;
         }
 
-        if(!game){
+        if(!deleteGame){
             __res(400,"Game id not found");
             return;
         }

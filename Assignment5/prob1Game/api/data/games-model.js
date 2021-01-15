@@ -45,8 +45,8 @@ const gameSchema = new mongoose.Schema({
  min: 1,
  max: 5,
  "default": 1
- },
- publisher: publisherSchema
+ }
+//  publisher: publisherSchema
 });
  
 mongoose.model("Game", gameSchema, "games");
