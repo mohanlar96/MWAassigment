@@ -75,8 +75,6 @@ module.exports.addAGame=function(req,res){
             price:req.body.price,
             minPlayers:req.body.minPlayers,
             maxPlayers:req.body.maxPlayers,
-            publisher:"",
-            reviews:"" ,
             minAge:req.body.minAge,
             designers:req.body.designers           
 
