@@ -1,5 +1,7 @@
+const ObjectId = require("mongodb").ObjectId;
 var mongoose = require("mongoose");
  
+
 const publisherSchema = new mongoose.Schema({
 name: {
  type: String,
@@ -25,6 +27,13 @@ location: {
  
 }
 });
+
+const reviewSchema=new mongoose.Schema({
+    comment:{
+        type: String,
+    }
+});
+
  
 const gameSchema = new mongoose.Schema({
  title: {
@@ -52,7 +61,14 @@ const gameSchema = new mongoose.Schema({
  publisher: {
      type:publisherSchema,
      required:false
- }
+ },
+ reviews:{
+     type:[reviewSchema],
+      required:false
+    }
+
+    
+ 
 });
  
 mongoose.model("Game", gameSchema, "games");

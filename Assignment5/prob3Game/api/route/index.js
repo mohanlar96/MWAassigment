@@ -1,7 +1,7 @@
 const router=require("express").Router();
 const gameController=require("../controller/game-controller.js");
 const publisherController=require("../controller/publisher-controller.js");
-// const reviewController=require("../controller/review-controller.js");
+const reviewController=require("../controller/review-controller.js");
 
 router.route("/games")
       .get(gameController.getGames)
@@ -18,14 +18,14 @@ router.route("/games/:gameId/publishers")
       .post(publisherController.addAPublisherOfAGame)
       .delete(publisherController.deleteAPublisherOfAGame);
 
-//       //review
-// router.route("/games/:gameId/reivew")
-//       .get(reviewController.getReviews)
-//       .post(reviewController.addAReview);
+      //review
+router.route("/games/:gameId/reviews")
+      .get(reviewController.getReviews)
+      .post(reviewController.addAReview);
 
-// router.route("/games/:gameId/review/:reviewId")
-//       .get(reviewController.getAReview)
-//       .put(reviewController.updateAReview)
-//       .delete(reviewController.deleteAReview);
+router.route("/games/:gameId/reviews/:reviewId")
+      .get(reviewController.getAReview)
+      .put(reviewController.updateAReview)
+      .delete(reviewController.deleteAReview);
 
 module.exports=router;

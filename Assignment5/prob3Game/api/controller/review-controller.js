@@ -1,44 +1,22 @@
 const ObjectId = require("mongodb").ObjectId;
 
-const Review=require("mongoose").model("Game");
+const Game=require("mongoose").model("Game");
 
 module.exports.getReviews=function(req,res){
 
        
-    var offset= 0;
-    var count= 5;
-    var maxCount= 10;
-
-    _feedbackResponse=(status,msg)=>res.status(status).send({message:msg});
+     __res=(status,msg)=>res.status(status).send({message:msg});
     
-    if (req.query && req.query.offset) {
-         offset= parseInt(req.query.offset);
-    }
-
-    if (req.query && req.query.count) {
-         count= parseInt(req.query.count);
-    }
-
-    if (isNaN(offset) || isNaN(count)) {
-        _feedbackResponse(400,"QueryString Offset and Count should be numbers");
-        return;
-    }   
-
-    if (count > maxCount) {
-        _feedbackResponse(400,"Cannot exceed count of "+ maxCount); 
-        console.log("running");    
-        return;
-    }
-
-    Game.find().skip(offset).limit(count).exec(function(err,games){
+    
+    Game.findById(req.params.gameId).select("reviews").exec(function(err,rev){
         if (err) {
-            _feedbackResponse(500,err);            
-            console.log("Error finding games");           
-         }else if(!games){
-            _feedbackResponse(404,"Games not found!");            
+            __res(500,err);            
+            console.log("Error finding reviews");           
+         }else if(!rev){
+            __res(404,"reviews not found!");            
         } else {
-            console.log("Found games", games.length);
-            res.status(200).send(games);
+            console.log("Found reviews", rev);
+            res.status(200).json(rev);
         }
     });    
 }
@@ -46,16 +24,19 @@ module.exports.getAReview=function(req,res){
 
     __res=(status,msg)=>res.status(status).send({message:msg});
      
-    Game.findById(req.params.reviewId).select("publisher").exec(function(err,publisher){
+    Game.findById(req.params.gameId).select("reviews").exec(function(err,game){
+        const revi=game.reviews.id(req.params.reviewId);
         if (err) {
             __res(500,err);            
-            console.log("Error finding a publisher");           
-        }else if(!publisher){
-            __res(404,"Publishers not found!"); 
-            console.log("Publisher not found ");         
+            console.log("Error finding a review");    
+            return;      
+        }else if(!revi){
+            __res(404,"Review not found!"); 
+            console.log("review not found "); 
+            return;        
         } else {
-            console.log("Found a publisher");
-            res.status(200).json(publisher);
+            console.log("Found a review" + revi);
+            res.status(200).json(revi);
         }
     });
    
@@ -65,7 +46,7 @@ module.exports.addAReview=function(req,res){
 
     __res=(status,msg)=>res.status(status).send({message:msg});
    
-    Game.findById(req.params.reviewId).exec(function(err,pub){
+    Game.findById(req.params.gameId).select("reviews").exec(function(err,pub){
 
         if(err){
             __res(500,err);
@@ -73,21 +54,26 @@ module.exports.addAReview=function(req,res){
         }
 
         if(!pub){
-            __res(400,"Review id not found");
+            __res(400,"game id not found");
             return;
         }
-        
-        pub.publisher={name:req.body.publisher};
-        
+        console.log(req.body.review);
+        console.log(pub);
 
-        pub.save(function(err,updatePublisher){
+        if(!Array.isArray(pub.reviews)){
+            pub.reviews=[];
+        }
+        pub.reviews.push({comment:req.body.review});  
+        // pub.reviews=undefined;       
+
+        pub.save(function(err,rev){
            
             if(err){
                 __res(500,err);
                 return;
             }
-            console.log("successfully added", updatePublisher);
-            res.status(204).json(updatePublisher);
+            console.log("successfully added", rev);
+            res.status(204).json(rev);
         });        
 
     });
@@ -97,32 +83,20 @@ module.exports.updateAReview=function(req,res){
     
     __res=(status,msg)=>res.status(status).send({message:msg});
    
-    Game.findById(req.params.reviewId).exec(function(err,pub){
-
-        if(err){
-            __res(500,err);
-            return;           
-        }
-
-        if(!pub){
-            __res(400,"Review id not found");
-            return;
-        }
-        
-        pub.publisher={name:req.body.publisher};
-        
-
-        pub.save(function(err,updatePublisher){
-           
+    Game.updateOne({"_id":req.params.gameId,"reviews._id":req.params.reviewId},
+        {$set:{"reviews.$.comment":req.body.review}},
+        function(err,game){
+            
             if(err){
                 __res(500,err);
-                return;
+                return;           
             }
-            console.log("successfully updated", updatePublisher);
-            res.status(204).json(updatePublisher);
-        });        
 
-    });
+            res.status(204).json(game);
+        }  
+    );    
+
+    
     
 }
 
@@ -130,31 +104,31 @@ module.exports.deleteAReview=function(req,res){
 
     __res=(status,msg)=>res.status(status).send({message:msg});
    
-    Game.findById(req.params.reviewId).exec(function(err,pub){
+    Game.findById(req.params.gameId).select("reviews").exec(function(err,game){
+        
+        game.reviews.id(req.params.reviewId).remove();
 
         if(err){
             __res(500,err);
             return;           
         }
 
-        if(!pub){
+        if(!game){
             __res(400,"Review id not found");
             return;
-        }
+        }   
         
-        pub.publisher=undefined;
-        
-
-        pub.save(function(err,updatePublisher){
+        game.save(function(err,rev){
            
             if(err){
                 __res(500,err);
                 return;
             }
-            console.log("successfully delete", updatePublisher);
-            res.status(204).json(updatePublisher);
+            console.log("successfully deleted", rev);
+            res.status(204).json(rev);
         });        
 
+    
     });  
    
          
