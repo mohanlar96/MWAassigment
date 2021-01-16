@@ -59,12 +59,10 @@ const gameSchema = new mongoose.Schema({
  "default": 1
  },
  publisher: {
-     type:publisherSchema,
-     required:false
+     type:publisherSchema
  },
  reviews:{
-     type:[reviewSchema],
-      required:false
+     type:[reviewSchema]
     }
 
     
