@@ -83,6 +83,7 @@ getAStudentAddresses=function(req,res){
     });
    
 }
+
 getAnAddressOfaStudent=function(req,res){ 
 
     _feedbackResponse=(status,msg)=>res.status(status).send({message:msg});  
@@ -102,8 +103,6 @@ getAnAddressOfaStudent=function(req,res){
     });
    
 }
-
-
 
 module.exports={
     getStudents,

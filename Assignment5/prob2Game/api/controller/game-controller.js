@@ -56,7 +56,7 @@ module.exports.getAGame=function(req,res){
             console.log("Game not found ");         
         } else {
             console.log("Found a game");
-            res.status(200).send(game);
+            res.status(200).json(game);
         }
     });
    
@@ -84,9 +84,9 @@ module.exports.addAGame=function(req,res){
             if(err){
                 __res(201,err)
                 return;
-
             }else{
-                res.status(200,game);
+
+                res.status(201).json(game);
                 console.log("successfully addeded a game ", game);
 
             }

@@ -3,21 +3,24 @@ var mongoose = require("mongoose");
 const publisherSchema = new mongoose.Schema({
 name: {
  type: String,
- required: true
+ required: false
 },
 country: {
  type: String,
- required: true
+ required: false
 },
 established: {
  type: Date,
- required: true
+ required: false
 },
 location: {
- address: String,
+ address: {
+     type:String,
+     required:false
+ },
  coordinates: {
- type: [Number], // long(E/W), lat(N/S)
- index: "2dsphere"
+    type: [Number], // long(E/W), lat(N/S)
+    index: "2dsphere"
  }
  
 }
@@ -45,8 +48,11 @@ const gameSchema = new mongoose.Schema({
  min: 1,
  max: 5,
  "default": 1
+ },
+ publisher: {
+     type:publisherSchema,
+     required:false
  }
-//  publisher: publisherSchema
 });
  
 mongoose.model("Game", gameSchema, "games");

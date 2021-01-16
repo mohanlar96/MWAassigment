@@ -11,7 +11,7 @@ router.route("/games/:gameId")
       .put(gameController.updateAGame)
       .delete(gameController.deleteAGame);
 
-router.route("/games/:publisherId/publishers")
+router.route("/games/:gameId/publishers")
       .get(publisherController.getAPublisherOfAGame)
       .put(publisherController.updateAPublisherOfAGame)
       .post(publisherController.addAPublisherOfAGame)
