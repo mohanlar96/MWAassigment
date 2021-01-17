@@ -57,14 +57,14 @@ module.exports.addAReview=function(req,res){
             __res(400,"game id not found");
             return;
         }
-        console.log(req.body.review);
-        console.log(pub);
+        
+        console.log(typeof(pub.review));
 
-        if(!Array.isArray(pub.reviews)){
+        if(pub.reviews==""){
+            
             pub.reviews=[];
         }
         pub.reviews.push({comment:req.body.review});  
-        // pub.reviews=undefined;       
 
         pub.save(function(err,rev){
            
