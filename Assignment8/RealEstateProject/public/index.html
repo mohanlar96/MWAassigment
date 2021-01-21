@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Real Estate MEANS </title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <link
+        href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700%7CRoboto:300,300i,400,400i,500,500i,700,700i,900,900i&amp;subset=cyrillic"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/ionicons.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body ng-app="meanRealEstate">
+    <div class="container maincont">
+
+        <div ng-view></div>
+
+    </div>
+
+
+    <div class="modalform">
+        <form action="#" method="POST" class="form-validate">
+            <p class="modalform-ttl">Contact Us</p>
+            <input type="text" placeholder="Your name" data-required="text" name="name">
+            <input type="text" placeholder="Your phone" data-required="text" name="phone">
+            <input type="text" placeholder="Your email" data-required="text" data-required-email="email" name="email">
+            <button class="btn1" type="submit">Send</button>
+        </form>
+    </div>
+
+    <footer class="site-footer">
+
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <ul class="social-links">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-youtube-play"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4 f-copyright">
+                        <p>All Rights Reserved © 2020</p>
+                    </div>
+                    <div class="col-sm-4 f-callback">
+                        <button class="modalform-btn btn1">Contact us</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script src="js/jquery-1.12.3.min.js"></script>
+    <script src="/node_modules/angular/angular.js"></script>
+    <script src="/node_modules/angular-route/angular-route.js"></script>
+    <script src="./angular-app/app.js"></script>
+    <script src="./angular-app/apartment-data-factory/apartment-data-factory.js"></script>
+    <script src="./angular-app/apartment-list/apartment-list-controller.js"></script>
+    <script src="./angular-app/apartment-display/apartment-display-controller.js"></script>
+    <script src="./angular-app/apartment-rating/apartment-rating-directive.js"></script>
+
+</body>
+
+</html>
