@@ -1,0 +1,12 @@
+<h3>List of all the {{jokeCtrl.name}}</h3>
+<ul>
+    <li ng-repeat="joke in jokeCtrl.jokes">
+        {{joke.id | order}} <br>
+        {{joke.setup}}
+        <br>
+        <input type="checkbox" name="" id="" ng-model="seePunchline"> Check to See see Punchline
+        <br>
+        <span ng-if="seePunchline">{{joke.punchline}}</span>
+        <br><br>
+    </li>
+</ul>
