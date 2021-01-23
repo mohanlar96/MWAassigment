@@ -1,0 +1,25 @@
+
+<h1> Jobs List </h1> 
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Job Post</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="job in jobCtr.jobs">
+            <td><a href="#!/jobs/{{job._id}}">{{$index+1}}. {{job.title}}</a></td>
+            <td>                
+                <a href="#!/updateJob/{{job._id}}" class="btn btn-warning">Update</a>
+                <button type="button" class="btn btn-danger" ng-click="jobCtr.deleteJob(job._id)">delete</button>                
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<a href="#!/addJob" class="btn btn-success">Add new job</a>
+    
+
+
