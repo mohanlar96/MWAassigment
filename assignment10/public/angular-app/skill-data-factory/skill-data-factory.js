@@ -3,18 +3,18 @@ angular.module("jobApp").factory("JobSkillDataFactory", JobSkillDataFactory);
 function JobSkillDataFactory($http){
     return {
         getAllSkills : getAllSkills,
-        deleteOneJobSkill : deleteOneJobSkill,
-        getOneJobSkill : getOneJobSkill,
-        addOneJobSkill : addOneJobSkill,
-        updateOneJobSkill : updateOneJobSkill
+        deleteAJobSkill : deleteAJobSkill,
+        getAJobSkill : getAJobSkill,
+        addAJobSkill : addAJobSkill,
+        updateAJobSkill : updateAJobSkill
     };
 
-    function updateOneJobSkill(jobId, id, skill) {
+    function updateAJobSkill(jobId, id, skill) {
         return $http.put("/api/jobs/"+jobId+"/skills/"+id, skill)
             .then(complete).catch(failed);
     }
 
-    function addOneJobSkill(jobId, skill){
+    function addAJobSkill(jobId, skill){
         return $http.post("/api/jobs/"+jobId+"/skills", skill)
             .then(complete).catch(failed);
     }
@@ -25,13 +25,13 @@ function JobSkillDataFactory($http){
             .then(complete).catch(failed);
     }
 
-    function getOneJobSkill(jobId, id){
+    function getAJobSkill(jobId, id){
         console.log("get single skill");
         return $http.get("/api/jobs/"+jobId+"/skills/"+id)
             .then(complete).catch(failed);
     }
 
-    function deleteOneJobSkill(jobId, id){
+    function deleteAJobSkill(jobId, id){
         console.log("delete job");
         return $http.delete("/api/jobs/"+jobId+"/skills/"+id)
             .then(complete).catch(failed);

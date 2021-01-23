@@ -3,7 +3,7 @@ angular.module("jobApp").controller("JobViewController", JobViewController);
 function JobViewController($routeParams, JobDataFactory, JobSkillDataFactory){
     var vm = this;
     var id = $routeParams.id;
-    JobDataFactory.getOneJob(id).then(function(response){
+    JobDataFactory.getAJob(id).then(function(response){
         vm.job = response;
         vm.skills = response.skills;
     })
@@ -21,7 +21,7 @@ function JobViewController($routeParams, JobDataFactory, JobSkillDataFactory){
         }
 
         console.log(postDate)
-        JobDataFactory.updateOneJob(postData, id).then(function(response){
+        JobDataFactory.updateAJob(postData, id).then(function(response){
             vm.status = response;            
             location.replace("/");
         })
@@ -34,7 +34,7 @@ function JobViewController($routeParams, JobDataFactory, JobSkillDataFactory){
             description : vm.sDescription
         }
         console.log(postData);
-        JobSkillDataFactory.addOneJobSkill(id, postData).then(function(response){
+        JobSkillDataFactory.addAJobSkill(id, postData).then(function(response){
             vm.status = response;
             location.reload();
         })

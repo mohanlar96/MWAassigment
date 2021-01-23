@@ -7,16 +7,7 @@ function JobsController(JobDataFactory){
     JobDataFactory.getAllJobs().then(function(response){
         console.log("response", response);
         vm.jobs = response;
-    })
-
-    vm.deleteJob = function(id) {
-        console.log("delete job with Id: ", id);
-        JobDataFactory.deleteOneJob(id).then(function(response){
-            vm.status = response;
-            alert("delete job with id:"+id);
-            location.reload();
-        })
-    }
+    });
 
     vm.addJob = function() {
         console.log("add new job");
@@ -30,9 +21,20 @@ function JobsController(JobDataFactory){
             postDate : vm.jobPostDate
         }
 
-        JobDataFactory.addOneJob(postData).then(function(response){
+        JobDataFactory.addAJob(postData).then(function(response){
             vm.status = response;            
             location.replace("/");
         })
     }
+
+    vm.deleteJob = function(id) {
+        console.log("delete job with Id: ", id);
+        JobDataFactory.deleteAJob(id).then(function(response){
+            vm.status = response;
+            alert("delete job with id:"+id);
+            location.reload();
+        })
+    }
+
+   
 }
