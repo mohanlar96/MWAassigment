@@ -1,0 +1,47 @@
+<div class="mainttl-wrap">
+    <h1 class="mainttl"><span>Listing of  <b>Apartments</b></span></h1>       
+</div>
+
+<div class="row prop-grid">
+    <div class="cf-xs-6 cf-sm-6 cf-lg-4 col-xs-6 col-sm-6 col-md-4 prop-i-col" ng-repeat="apartment in apartmentCtrl.apartments">
+        <div class="prop-i">
+            <a href="#!/apartment/{{apartment._id}}" class="prop-i-img">
+                <img src="http://placehold.it/362x215" alt="">
+            </a>
+            <h3 class="prop-i-ttl">
+                <a href="#!/apartment/{{apartment._id}}">{{apartment.title}}</a>
+            </h3>
+            <ul class="prop-i-rating">
+                <li><i class="ion-android-star"></i></li>
+                <li><i class="ion-android-star"></i></li>
+                <li><i class="ion-android-star"></i></li>
+                <li><i class="ion-android-star"></i></li>
+                <li><i class="ion-android-star"></i></li>
+            </ul>
+            <dl class="prop-i-info">
+                <dt>
+                    <span class="prop-i-info-icon"><img src="img/propinfo1.png" alt=""></span>
+                    Square Feet
+                </dt>
+                <dd>{{apartment.squareFeet}}</dd>
+                <dt>
+                    <span class="prop-i-info-icon"><img src="img/propinfo2.png" alt=""></span>
+                    Bedrooms
+                </dt>
+                <dd>{{apartment.bathroom}}</dd>
+                <dt>
+                    <span class="prop-i-info-icon"><img src="img/propinfo3.png" alt=""></span>
+                    Acres
+                </dt>
+                <dd>{{apartment.acres}}</dd>
+            </dl>
+            <div class="prop-i-bottom">
+                <p class="prop-i-price"><span class="prop-i-price-val">{{apartment.price}}</span></p>
+                <p class="prop-i-type"><a href="catalog-grid.html">For {{apartment.rentOrSell | uppercase}}</a></p>
+            </div>
+        </div>
+    </div>       
+</div>
+
+<!--     <button class="prop-items-more">Show more</button>
+-->

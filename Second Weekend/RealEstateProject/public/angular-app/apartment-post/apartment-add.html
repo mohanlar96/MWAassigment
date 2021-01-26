@@ -1,0 +1,112 @@
+<div class="container">
+    <h1 style="font-size: 24px;"> Post An Aparmtet</h1>
+    <div class="prop-wrap" style="padding:20px">
+        <form class="form-horizontal" ng-submit="AnApartCtrl.postApartment()">
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="title">Title:</label>
+              <div class="col-sm-10">
+                <input type="text" ng-model={{AnApartCtrl.title}} class="form-control" id="title" placeholder="Enter title" name="title">
+              </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="bedrooms">bedrooms:</label>
+                <div class="col-sm-10">
+                  <input type="text" ng-model={{AnApartCtrl.bedrooms}} class="form-control" id="bedrooms" placeholder="Enter bedrooms" name="bedrooms">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="floors">floors:</label>
+                <div class="col-sm-10">
+                  <input type="text" ng-model={{AnApartCtrl.floors}} class="form-control" id="floors" placeholder="Enter floors" name="floors">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="price">price:</label>
+                <div class="col-sm-10">
+                  <input type="text" ng-model={{AnApartCtrl.price}} class="form-control" id="price" placeholder="Enter price" name="price">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="city">city:</label>
+                <div class="col-sm-10">
+                  <input type="text" ng-model={{AnApartCtrl.city}} class="form-control" id="city" placeholder="Enter city" name="city">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="zip">zip:</label>
+                <div class="col-sm-10">
+                  <input type="text" ng-model={{AnApartCtrl.zip}} class="form-control" id="zip" placeholder="Enter zip" name="zip">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="street">street:</label>
+                <div class="col-sm-10">
+                  <input type="text" ng-model={{AnApartCtrl.street}} class="form-control" id="street" placeholder="Enter street" name="street">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="bathroom">bathroom:</label>
+                <div class="col-sm-10">
+                  <input type="text" ng-model={{AnApartCtrl.bathroom}} class="form-control" id="bathroom" placeholder="Enter bathroom" name="bathroom">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="yearBuild">yearBuild:</label>
+                <div class="col-sm-10">
+                  <input type="text" ng-model={{AnApartCtrl.yearBuild}} class="form-control" id="yearBuild" placeholder="Enter yearBuild" name="yearBuild">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="acres">acres:</label>
+                <div class="col-sm-10">
+                  <input type="text" ng-model={{AnApartCtrl.acres}} class="form-control" id="acres" placeholder="Enter acres" name="acres">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="rentOrSell">rentOrSell:</label>
+                <div class="col-sm-10">
+                  <input type="radio" ng-model={{AnApartCtrl.rentOrSell}} value="retn"  name="rentOrSell">Rent <br>
+                  <input type="radio" ng-model={{AnApartCtrl.rentOrSell}} value="buy"  name="rentOrSell">Sell
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="state">state:</label>
+                <div class="col-sm-10">
+                  <input type="text" ng-model={{AnApartCtrl.state}} class="form-control" id="state" placeholder="Enter state" name="state">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="squareFeet">squareFeet:</label>
+                <div class="col-sm-10">
+                  <input type="text" ng-model={{AnApartCtrl.squareFeet}} class="form-control" id="squareFeet" placeholder="Enter squareFeet" name="squareFeet">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="description">description:</label>
+                <div class="col-sm-10">
+                  <textarea type="text" rows="6" ng-model={{AnApartCtrl.description}} class="form-control" id="description" placeholder="Enter description" name="description">
+                      </textarea>
+                </div>
+              </div>
+
+            
+            <div class="form-group">        
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">Post</button>
+              </div>
+            </div>
+          </form>       
+    </div>
+</div>
+
