@@ -6,6 +6,10 @@ function GamesController(GameDataFactory){
     GameDataFactory.getAllGames().then(function(response){
         vm.games = response;
     });
+    vm.isLoggedIn= function() {
+        if (AuthFactory.isLoggedIn) {return true;}
+        else {return false;}
+    };
     
     vm.addGame = function() {
         console.log("adding game");

@@ -11,9 +11,9 @@ module.exports.register = function (req, res) {
     var password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
     User.create({ username: username, name: name, password: password }, function (err, user) {
         if (err) {
-             console.log(err); res.status(400).json(err);         
-        }else { 
-            console.log("user created", user); res.status(200).json(user); 
+            console.log(err); res.status(400).json(err);
+        } else {
+            console.log("user created", user); res.status(200).json(user);
         }
     });
 };
@@ -23,17 +23,13 @@ module.exports.login = function (req, res) {
     var username = req.body.username;
     var password = req.body.password;
     User.findOne({ username: username }).exec(function (err, user) {
-        if (err) {             
-            console.log(err); res.status(400).json(err);
-        }
+        if (err) { console.log(err); res.status(400).json(err); }
         if (user) {
             if (bcrypt.compareSync(password, user.password)) {
                 console.log("user found", user);
                 var token = jwt.sign({ username: user.username }, "cs572", { expiresIn: 3600 });
                 res.status(200).json({ success: true, token: token });
-            } else { 
-                res.status(401).json("Unauthorized");
-            }
+            } else { res.status(401).json("Unauthorized"); }
         } else {
             console.log("user not found", user);
             res.status(400).json("Unauthorized");

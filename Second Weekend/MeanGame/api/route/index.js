@@ -6,7 +6,7 @@ const userController=require("../controller/user-controller.js");
 
 router.route("/games")
       .get(gameController.getGames)
-      .post(gameController.addAGame);
+      .post(userController.authenticate,gameController.addAGame);
 
 router.route("/games/:gameId")
       .get(gameController.getAGame)

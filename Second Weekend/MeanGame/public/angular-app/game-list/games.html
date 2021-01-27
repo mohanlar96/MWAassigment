@@ -9,10 +9,10 @@
     </thead>
     <tbody>
         <tr ng-repeat="game in gameCtrl.games">
-            <td><a href="#!/game/{{game._id}}">{{game.title}}</a></td>            
-            <td><a type="button" class="text text-danger" ng-click="gameCtrl.deleteGame(game._id)">delete</a>                
+            <td><a href="#!/game/{{game._id}}">{{game.title}}</a></td>
+            <td><a type="button" class="text text-danger" ng-click="gameCtrl.deleteGame(game._id)">delete</a>
                 <!-- <a href="#!/game/{{game._id}}" class="btn btn-danger">delete</a></td>             -->
-        </tr> 
+        </tr>
     </tbody>
 </table>
 
@@ -20,17 +20,19 @@
     <li ng-repeat="game in gameCtrl.games">
         <a href="#!/game/{{game._id}}">{{game.title}}</a></li>
 </ul> -->
+<div ng-if="gameCtrl.isLoggedIn()">
+    <form name="gameCtrl.gameForm" ng-submit="gameCtrl.addGame()">
+        Title: <input type="text" name="title" required ng-model="gameCtrl.newGameTitle" /><br />
+        Price: <input type="text" name="price" required ng-model="gameCtrl.newGamePrice" /><br />
+        Year: <input type="text" name="year" required ng-model="gameCtrl.newGameYear" /><br />
+        Rate: <input type="text" name="rate" required ng-model="gameCtrl.newGameRate" ng-minlength=1 ng-maxlength=2 min="1"
+            max="5" /><br />
+        MinPlayers: <input type="text" name="minPlayers" required ng-model="gameCtrl.newGameMinPlayers" /><br />
+        MaxPlayers: <input type="text" name="maxPlayers" required ng-model="gameCtrl.newGameMaxPlayers" /><br />
+        Min Player Age: <input type="text" name="minAge" required ng-model="gameCtrl.newGameMinAge" /><br />
+        Designer: <input type="text" name="designer" required ng-model="gameCtrl.newGameDesigner" /><br />
+        <button type="submit" class="btn-success">add game</button>
+    
+    </form>
 
-<form name="gameCtrl.gameForm" ng-submit="gameCtrl.addGame()">
-    Title: <input type="text" name="title" required ng-model="gameCtrl.newGameTitle"/><br/>
-    Price: <input type="text" name="price" required ng-model="gameCtrl.newGamePrice"/><br/>
-    Year: <input type="text" name="year" required ng-model="gameCtrl.newGameYear"/><br/>
-    Rate: <input type="text" name="rate" required ng-model="gameCtrl.newGameRate"
-                            ng-minlength=1 ng-maxlength=2 min="1" max="5"/><br/>    
-    MinPlayers: <input type="text" name="minPlayers" required ng-model="gameCtrl.newGameMinPlayers"/><br/>
-    MaxPlayers: <input type="text" name="maxPlayers" required ng-model="gameCtrl.newGameMaxPlayers"/><br/>
-    Min Player Age: <input type="text" name="minAge" required ng-model="gameCtrl.newGameMinAge"/><br/>
-    Designer: <input type="text" name="designer" required ng-model="gameCtrl.newGameDesigner"/><br/>
-    <button type="submit" class="btn-success">add game</button>
-
-</form>
+</div>
