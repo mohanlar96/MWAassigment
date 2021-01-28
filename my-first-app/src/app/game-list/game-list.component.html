@@ -1,0 +1,12 @@
+<p>game-list works!</p>
+
+My first game is {{title}}
+
+<ul *ngFor="let game of games">
+    <li >
+        {{game.title}}
+    </li>
+    <li >
+        {{game.price | currency}}
+    </li>
+</ul>
