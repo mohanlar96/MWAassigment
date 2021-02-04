@@ -7,6 +7,7 @@ var routes = require("./api/route");
 
 
 const app = express();
+
 app.set("port", 3000);
 
 app.use(function(req, res, next) {    
@@ -16,11 +17,11 @@ app.use(function(req, res, next) {
 
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/node_modules", express.static(path.join(__dirname, "node_modules")));
+app.use(     "/node_modules",        express.static(     path.join(__dirname, "node_modules")    )    );
 
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(   bodyParser.urlencoded({extended: false})   );
 
-app.use("/api", routes);
+app.use(   "/api", routes);
 
 const server = app.listen(app.get("port"), function(){
     console.log("Listening to port "+server.address().port);
