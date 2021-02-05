@@ -1,0 +1,87 @@
+<div class="container">
+    <h1>Create Your Profile Here </h1>
+    <form  #f="ngForm" (ngSubmit)="onSubmit(f)" name="profileForm">
+      <fieldset>
+        <legend>Please kindly fill the following informations</legend>
+        
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email"  name="email" [(ngModel)]="profile.email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" [(ngModel)]="profile.password" name="password" class="form-control" id="password" placeholder="Password">
+        </div>
+        
+        <div class="form-group">
+          <label for="exampleSelect1">Course You are taking on campus</label>
+          <select multiple="" [(ngModel)]="profile.campusTakenCourse" name="course" class="form-control" id="exampleSelect2">
+            <option>FPP</option>
+            <option>MPP</option>
+            <option>DBMS</option>
+            <option>Big Data</option>
+            <option>Advance Software Development</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="distanceTakenCourse">Course You are taking on Distance Edu :</label>
+          <select multiple="" [(ngModel)]="profile.distanceTakenCourse" class="form-control" id="distanceTakenCourse" name="distanceTakenCourse">
+            <option>Software Enginnering</option>
+            <option>Algorithm</option>
+            <option>DBMS</option>
+            <option>Big Data</option>
+            <option>Advance Software Development</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="aboutYourself">Enter About aboutYourself </label>
+          <textarea class="form-control" id="aboutYourself" rows="3" name="aboutYourself" [(ngModel)]="profile.aboutYourself"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputFile">Upload Profile</label>
+          <input [(ngModel)]="profile.profile.url" name="profile" type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+          <small id="fileHelp" class="form-text text-muted">Your Profile should be square and smaller than 300MB</small>
+        </div>
+        <fieldset class="form-group">
+          <legend>Gender</legend>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input [(ngModel)]="profile.gender" type="radio" class="form-check-input" name="gender" id="optionsRadios1" value="Male" checked="">
+              Male
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" [(ngModel)]="profile.gender" value="female" name="gender" id="optionsRadios2" value="female">
+              Female
+            </label>
+          </div>
+          
+        </fieldset>
+        <fieldset class="form-group">
+          <legend>Which You Prefer (please check both if you want hybrid)</legend>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" [(ngModel)]="profile.courseType" name="courseType" type="radio" value="InClass" >
+              Attending Class
+            </label>
+          </div>
+          <div class="form-check ">
+            <label class="form-check-label">
+              <input class="form-check-input" [(ngModel)]="profile.courseType" name="courseTypeM" type="radio" value="Online" >
+              Attending Online
+            </label>
+          </div>
+
+          <div class="form-check ">
+            <label class="form-check-label">
+              <input class="form-check-input" [(ngModel)]="profile.courseType" name="courseTypeM" type="radio" value="Online" >
+              Both
+            </label>
+          </div>
+        </fieldset>
+        
+        <button type="submit" class="btn btn-primary">Save Profile</button>
+      </fieldset>
+    </form>
+</div>
